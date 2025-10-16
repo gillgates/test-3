@@ -1,0 +1,193 @@
+﻿<html>
+<head>
+    <meta name="GENERATOR" content="Microsoft Visual Studio">
+    <title></title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --panel: rgba(17,17,17,0.98);
+            --text-red: #8B0000;
+            --muted: #bdbdbd;
+            --sidebar-width: 280px;
+            --ease: 0.32s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: var(--bg);
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            display: none;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--sidebar-width);
+            transform: translateX(-110%);
+            transition: transform var(--ease) ease;
+            background: var(--panel);
+            color: var(--muted);
+            padding-top: 64px;
+            box-shadow: 4px 0 30px rgba(0,0,0,0.6);
+            overflow: auto;
+            z-index: 1101;
+        }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        .sidebar a {
+            padding: 14px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            border-radius: 6px;
+            display: block;
+        }
+
+            .sidebar a:hover, .sidebar a.active {
+                background: #222;
+                color: #fff;
+            }
+
+        .main {
+            transition: margin-left var(--ease);
+            padding: 120px 40px 40px 40px;
+            color: var(--text-red);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(36px, 7vw, 80px);
+            line-height: 1.2;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .main a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+            .main a:hover {
+                color: #bdbdbd;
+            }
+
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" id="menuToggle">☰ Menu</button>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="siteSidebar">
+        <nav>
+            <a href="Index.htm">Home</a>
+            <a href="What is AI and how it all started.htm">AI Definition</a>
+            <a href="Who is Alan Turing.htm">Who is Turing</a>
+            <a href="The significance of Turing to AI.htm">Significance</a>
+            <a href="is AI helpful.htm">Is AI Helpful?</a>
+            <a class="active" href="Sources.htm">Sources</a>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <h1 class="hero-title">
+            Sources<br>
+        </h1>
+
+        <p>
+            <a href="https://en.wikipedia.org/wiki/History_of_artificial_intelligence" target="_blank">History of Artificial Intelligence - Wikipedia</a><br><br>
+
+            <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank">Artificial Intelligence - Wikipedia</a><br><br>
+
+            <a href="https://st.llnl.gov/news/look-back/birth-artificial-intelligence-ai-research" target="_blank">The Birth of Artificial Intelligence (AI) Research | Science and Technology</a><br><br>
+
+            <a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank">Alan Turing - Wikipedia</a><br><br>
+
+            <a href="https://eng.vt.edu/magazine/stories/fall-2023/ai.html" target="_blank">AI—The good, the bad, and the scary</a>
+
+        </p>
+
+    </div>
+
+    <script>
+const menuBtn = document.getElementById('menuToggle');
+const sidebar = document.getElementById('siteSidebar');
+const overlay = document.getElementById('overlay');
+
+function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('active');
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+}
+
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
+
+overlay.addEventListener('click', closeSidebar);
+    </script>
+
+</body>
+</html>

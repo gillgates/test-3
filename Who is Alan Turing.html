@@ -1,0 +1,183 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>Who is Turing?</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+
+    <style>
+        :root {
+            --bg: #000;
+            --panel: rgba(17,17,17,0.98);
+            --text-red: #8B0000;
+            --muted: #bdbdbd;
+            --sidebar-width: 280px;
+            --ease: 0.32s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: var(--bg);
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            display: none;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--sidebar-width);
+            transform: translateX(-110%);
+            transition: transform var(--ease) ease;
+            background: var(--panel);
+            color: var(--muted);
+            padding-top: 64px;
+            box-shadow: 4px 0 30px rgba(0,0,0,0.6);
+            overflow: auto;
+            z-index: 1101;
+        }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        .sidebar a {
+            padding: 14px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            border-radius: 6px;
+            display: block;
+        }
+
+            .sidebar a:hover, .sidebar a.active {
+                background: #222;
+                color: #fff;
+            }
+
+        .main {
+            transition: margin-left var(--ease);
+            padding: 120px 40px 40px 40px;
+            color: var(--text-red);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(36px, 7vw, 80px);
+            line-height: 1.2;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" id="menuToggle">☰ Menu</button>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="siteSidebar">
+        <nav>
+            <a href="Index.htm">Home</a>
+            <a href="What is AI and how it all started.htm">AI Definition</a>
+            <a class="active" href="Who is Alan Turing.htm">Who is Turing</a>
+            <a href="The significance of Turing to AI.htm">Significance</a>
+            <a href="is AI helpful.htm">Is AI Helpful?</a>
+            <a href="Sources.htm">Sources</a>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <h1 class="hero-title" id="pageTitle">
+            Who is Turing
+        </h1>
+
+        <p>
+            Alan Mathison Turing (1912–1954) was a British mathematician, logician, cryptanalyst, and pioneer of modern computing whose work laid the foundation for artificial intelligence. Turing is best known for his contributions to mathematics and computer science, particularly through his conceptualization of the Turing Machine, an abstract computational device introduced in 1936 that could simulate any algorithmic process. The Turing Machine became a central concept in the theory of computation, helping define what it means for a problem to be solvable by mechanical means.
+
+            During World War II, Turing worked at Bletchley Park, Britain’s codebreaking center, where he played a pivotal role in deciphering the German Enigma code. His work in cryptography not only shortened the war but also demonstrated the power of logical computation and algorithmic thinking in solving complex, real-world problems. This experience further influenced his ideas about machines capable of intelligence and decision-making.
+
+            Turing also introduced the concept of the Turing Test in 1950, a theoretical experiment designed to evaluate a machine’s ability to exhibit human-like intelligence. According to the Turing Test, if a human evaluator cannot reliably distinguish between responses from a machine and responses from another human, the machine can be considered intelligent. This test became a foundational benchmark in the philosophy and development of AI, prompting researchers to explore the boundaries between machine intelligence and human cognition.
+
+            Beyond his technical achievements, Turing’s life was marked by personal struggles. He was prosecuted in 1952 for homosexual acts, which were illegal in the United Kingdom at the time, and was subjected to chemical castration. Tragically, he died in 1954 under circumstances that are widely believed to have been suicide. Despite these challenges, Turing’s legacy has endured. Today, he is celebrated as a visionary whose theoretical and practical contributions transformed computer science, cryptography, and the concept of artificial intelligence.
+        </p>
+    </div>
+    <script>
+        const menuBtn = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('siteSidebar');
+        const overlay = document.getElementById('overlay');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        const activeLink = document.querySelector('.sidebar a.active');
+        const pageTitle = document.getElementById('pageTitle');
+        if (activeLink) {
+            pageTitle.textContent = activeLink.textContent;
+        }
+    </script>
+</body>
+</html>

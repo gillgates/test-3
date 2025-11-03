@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AI Definition</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --panel: rgba(17,17,17,0.98);
+            --text-red: #8B0000;
+            --text-white: #fff;
+            --muted: #bdbdbd;
+            --sidebar-width: 280px;
+            --ease: 0.32s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: var(--bg);
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            display: none;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--sidebar-width);
+            transform: translateX(-110%);
+            transition: transform var(--ease) ease;
+            background: var(--panel);
+            color: var(--muted);
+            padding-top: 64px;
+            box-shadow: 4px 0 30px rgba(0,0,0,0.6);
+            overflow: auto;
+            z-index: 1101;
+        }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        .sidebar a {
+            padding: 14px 16px;
+            display: block;
+            border-radius: 6px;
+            color: var(--muted);
+        }
+
+            .sidebar a.active, .sidebar a:hover {
+                background: #222;
+                color: var(--text-white);
+            }
+
+        .main {
+            transition: margin-left var(--ease);
+            padding: 120px 40px 40px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(36px, 7vw, 80px);
+            line-height: 1.2;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            color: var(--text-red);
+        }
+
+        p, li {
+            font-size: 18px;
+            color: var(--text-white);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .image-right {
+            float: right;
+            margin: 0 0 20px 20px;
+        }
+
+            .image-right img {
+                max-width: 350px;
+                border-radius: 8px;
+            }
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" id="menuToggle">☰ Menu</button>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="siteSidebar">
+        <nav>
+            <a href="Index.htm">Home</a>
+            <a class="active" href="What is AI and how it all started.htm">AI Definition</a>
+            <a href="Who is Alan Turing.htm">Who is Turing</a>
+            <a href="The significance of Turing to AI.htm">Significance</a>
+            <a href="is AI helpful.htm">Is AI Helpful?</a>
+            <a href="Sources.htm">Sources</a>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <h1 class="hero-title">Understanding Artificial Intelligence</h1>
+
+        <div class="image-right">
+            <img src="https://raw.githubusercontent.com/gillgates/Alan-Turing/refs/heads/main/image.jpg" alt="Artificial Intelligence Concept">
+        </div>
+
+        <p>
+            Artificial Intelligence, or AI, is the branch of computer science that builds systems able to do tasks we usually expect humans to do: spotting patterns, solving problems, understanding and generating language, and making decisions. AI isn’t a single gadget or a single program it’s a set of methods, approaches, and tools. Machine learning trains models on data so they improve over time. Deep learning stacks many layers of neural networks to handle complex tasks like image recognition and speech transcription.
+            AI covers several fields. Natural Language Processing helps computers read and respond to text and speech. Computer Vision gives machines the ability to interpret images and video. Robotics combines AI with hardware so systems can act and react in the physical world. Practically all the AI you see today is <em>narrow AI</em>systems trained for specific purposes. General AI, a machine with general purpose human like reasoning, remains theoretical.s
+            What matters is that AI excels at processing vast amounts of information quickly. It turns raw data into usable insight: predicting equipment failures, flagging suspicious transactions, recommending what movie you might like next. But powerful tools bring responsibility. Data quality, fairness, and clear governance determine whether AI helps people or amplifies harm.
+            I believe AI should be judged by how it is used. Built and regulated responsibly, it extends human capability and solves problems that were once out of reach. Left unchecked, it risks bias, loss of privacy, and uneven access to benefits.
+        </p>
+    </div>
+
+
+
+    <script>
+        const menuBtn = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('siteSidebar');
+        const overlay = document.getElementById('overlay');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+    </script>
+
+</body>
+</html>

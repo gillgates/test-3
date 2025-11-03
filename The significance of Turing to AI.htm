@@ -1,0 +1,174 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>The Significance of Turing to AI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #000;
+            --panel: rgba(17,17,17,0.98);
+            --text-red: #8B0000;
+            --muted: #bdbdbd;
+            --sidebar-width: 280px;
+            --ease: 0.32s;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: var(--bg);
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1100;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            display: none;
+            background: rgba(0,0,0,0.45);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--sidebar-width);
+            transform: translateX(-110%);
+            transition: transform var(--ease) ease;
+            background: var(--panel);
+            color: var(--muted);
+            padding-top: 64px;
+            box-shadow: 4px 0 30px rgba(0,0,0,0.6);
+            overflow: auto;
+            z-index: 1101;
+        }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 8px 12px;
+        }
+
+        .sidebar a {
+            padding: 14px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            border-radius: 6px;
+            display: block;
+        }
+
+            .sidebar a:hover, .sidebar a.active {
+                background: #222;
+                color: #fff;
+            }
+
+        .main {
+            transition: margin-left var(--ease);
+            padding: 120px 40px 40px 40px;
+            color: var(--text-red);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(36px, 7vw, 80px);
+            line-height: 1.2;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" id="menuToggle">☰ Menu</button>
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside class="sidebar" id="siteSidebar">
+        <nav>
+            <a href="Index.htm">Home</a>
+            <a href="What is AI and how it all started.htm">AI Definition</a>
+            <a href="Who is Alan Turing.htm">Who is Turing</a>
+            <a class="active" href="The significance of Turing to AI.htm">Significance</a>
+            <a href="is AI helpful.htm">Is AI Helpful?</a>
+            <a href="Sources.htm">Sources</a>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <h1 class="hero-title">Alan Turing’s Influence on AI</h1>
+
+        <p>
+            Turing did not build modern AI systems, but he provided the intellectual framework that makes them possible. The Turing Machine formalised computation, showing that complex procedures can be reduced to simple, repeatable steps. That idea underlies every digital program and every algorithm we use today.
+            The Turing Test reframed the debate: instead of arguing about what a machine is made of, he asked what a machine can do. That behavioural perspective pushed researchers to focus on measurable performance. Many modern benchmarks and practical evaluations still follow this pragmatic approach.
+            Turing also speculated about machines that could learn and improve. Today’s machine learning systems which adapt based on data echo that intuition. The practices of training, feedback, and iterative improvement reflect the same core idea: intelligence can emerge from systematic processing and refinement.
+            Finally, Turing’s legacy is ethical as well as technical. His treatment and the injustice he suffered underscore the human responsibilities around powerful technologies: fairness, accountability, and respect for rights. That context matters as much as the math when we decide how to develop and deploy AI.
+        </p>
+    </div>
+
+
+    <script>
+        const menuBtn = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('siteSidebar');
+        const overlay = document.getElementById('overlay');
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+    </script>
+
+</body>
+</html>
